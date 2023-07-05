@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+dependencies:
+  bezier-easing:
+    specifier: ^2.1.0
+    version: 2.1.0
+
 devDependencies:
   '@babel/core':
     specifier: ^7.22.6
@@ -1717,6 +1722,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /bezier-easing@2.1.0:
+    resolution: {integrity: sha512-gbIqZ/eslnUFC1tjEvtz0sgx+xTK20wDnYMIA27VA04R7w6xxXQPZDbibjA9DTWZRA2CXtwHykkVzlCaAJAZig==}
+    dev: false
 
   /browserslist@4.21.9:
     resolution: {integrity: sha512-M0MFoZzbUrRU4KNfCrDLnvyE7gub+peetoTid3TBIqtunaDJyXlwhakT+/VkvSXcfIzFfK/nkCs4nmyTmxdNSg==}

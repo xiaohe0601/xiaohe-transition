@@ -19,7 +19,7 @@
     /* 设置输出的JavaScript的JavaScript语言版本并包含兼容的库声明。Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "target": "ES6",
     /* 指定一组描述目标运行时环境的捆绑库声明文件。Specify a set of bundled library declaration files that describe the target runtime environment. */
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     /* 指定生成什么JSX代码。Specify what JSX code is generated. */
     // "jsx": "preserve",
     /* 启用对遗留实验装饰器的实验支持。Enable experimental support for legacy experimental decorators. */

@@ -1,6 +1,6 @@
 {
   "name": "xiaohe-transition",
-  "version": "0.1.4",
+  "version": "0.0.1",
   "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
   "scripts": {
     "build:webpack": "webpack build --mode production",
@@ -8,6 +8,9 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build": "pnpm run build:webpack && pnpm run build:types",
     "release": "pnpm run build && npm publish"
+  },
+  "dependencies": {
+    "bezier-easing": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.6",
@@ -50,6 +53,13 @@
   },
   "keywords": [
     "typescript",
-    "xiaohe"
+    "xiaohe",
+    "transition",
+    "animation",
+    "bezier",
+    "cubic-bezier",
+    "easing",
+    "timing",
+    "timing-function"
   ]
 }
