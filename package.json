@@ -1,0 +1,55 @@
+{
+  "name": "xiaohe-transition",
+  "version": "0.1.4",
+  "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
+  "scripts": {
+    "build:webpack": "webpack build --mode production",
+    "build:tsc": "tsc --project tsconfig.json",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "pnpm run build:webpack && pnpm run build:types",
+    "release": "pnpm run build && npm publish"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.6",
+    "@babel/plugin-transform-runtime": "^7.22.6",
+    "@babel/preset-env": "^7.22.6",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/node": "^20.3.3",
+    "@types/webpack": "^5.28.1",
+    "babel-loader": "^9.1.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.9.0"
+  },
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/esm/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "sideEffects": false,
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "homepage": "https://github.com/xiaohe0601/xiaohe-transition",
+  "bugs": "https://github.com/xiaohe0601/xiaohe-transition/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaohe0601/xiaohe-transition.git"
+  },
+  "author": {
+    "name": "小何同学 (xiaohe0601)",
+    "email": "HeDianGeng0601@outlook.com",
+    "url": "https://github.com/xiaohe0601"
+  },
+  "keywords": [
+    "typescript",
+    "xiaohe"
+  ]
+}
