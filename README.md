@@ -201,6 +201,10 @@ export default {
 </style>
 ```
 
+> 效果展示（GIF图片经过压缩抽帧处理，看似卡顿实际很流畅）
+
+<img src="./xiaohe-transition-demo.gif" width="500" />
+
 ##### 其他
 
 > 其他应用场景示例正在赶来的路上...
