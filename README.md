@@ -111,103 +111,25 @@ setTimeout(() => {
 
 #### 应用场景
 
-##### div内部滚动动画
+> 为方便起见，应用场景示例以 `Vue` 举例，但并不局限于 `Vue` 使用
 
-> 为方便起见，本示例以 `Vue` 举例，但不局限于 `Vue` 使用
+> 注：以下效果展示GIF图片经过压缩抽帧处理，看似卡顿实际很流畅
 
-``` vue
-<template>
-  <div class="transition-demo">
-    <div ref="scroller" class="transition-demo-scroller">
-      <div v-for="(it) in 1000" :key="it" class="transition-demo__block">
-        <span class="transition-demo__block__text">{{ it }}</span>
-      </div>
-    </div>
+##### Div内部滚动动画
 
-    <div class="transition-demo-footer">
-      <button @click="scroll2top">滚动至底部</button>
-      <button @click="scroll2bottom">滚动至顶部</button>
-      <button @click="pause">暂停</button>
-      <button @click="resume">继续</button>
-      <button @click="stop">停止</button>
-    </div>
-  </div>
-</template>
+[查看示例代码](./demo/DivScrollDemo.vue)
 
-<script>
-import XhTransition, { XhTransitionPresetBezier } from "xiaohe-transition";
+<img src="./demo/div-scroll-demo.gif" width="500" />
 
-export default {
-  name: "TransitionDemo",
-  mounted() {
-    this.init();
-  },
-  methods: {
-    init() {
-      this.transition = new XhTransition({
-        duration: 500,
-        preset: XhTransitionPresetBezier.easeOut
-      }, (value) => {
-        this.$refs.scroller.scrollTop = value;
-      });
-    },
-    scroll2top() {
-      const { scrollTop, scrollHeight } = this.$refs.scroller;
+##### 数字变化效果
 
-      this.transition.start({
-        start: scrollTop,
-        target: scrollHeight
-      });
-    },
-    scroll2bottom() {
-      this.transition.start({
-        start: this.$refs.scroller.scrollTop,
-        target: 0
-      });
-    },
-    pause() {
-      this.transition.pause();
-    },
-    resume() {
-      this.transition.resume();
-    },
-    stop() {
-      this.transition.stop();
-    }
-  }
-};
-</script>
+[查看示例代码](./demo/CountToDemo.vue)
 
-<style lang="scss">
-.transition-demo-scroller {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  height: 500px;
-  overflow-y: auto;
-}
+<img src="./demo/count-to-demo.gif" width="500" />
 
-.transition-demo-footer {
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
+##### 更多示例
 
-  button {
-    & + button {
-      margin-left: 20px;
-    }
-  }
-}
-</style>
-```
-
-> 效果展示（GIF图片经过压缩抽帧处理，看似卡顿实际很流畅）
-
-<img src="./xiaohe-transition-demo.gif" width="500" />
-
-##### 其他
-
-> 其他应用场景示例正在赶来的路上...
+更多应用场景示例正在赶来的路上...
 
 ### 🕹️ 构造函数
 

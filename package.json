@@ -1,6 +1,6 @@
 {
   "name": "xiaohe-transition",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
   "scripts": {
     "build:webpack": "webpack build --mode production",
