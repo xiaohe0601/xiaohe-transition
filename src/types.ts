@@ -1,4 +1,4 @@
-import XhTransition from "./index";
+import XhTransition from "./transition";
 
 export type NullableBoolean = boolean | null;
 export type NullableNumber = number | null;
