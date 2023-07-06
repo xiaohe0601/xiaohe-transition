@@ -13,10 +13,25 @@ export type XhTransitionBezier = [x1: number, y1: number, x2: number, y2: number
  * 过渡动画预设曲线
  */
 export enum XhTransitionPresetBezier {
+  /**
+   * 以相同速度开始至结束
+   */
   linear = "linear",
+  /**
+   * 慢速开始, 然后变快, 然后慢速结束
+   */
   ease = "ease",
+  /**
+   * 慢速开始
+   */
   easeIn = "ease-in",
+  /**
+   * 慢速结束
+   */
   easeOut = "ease-out",
+  /**
+   * 慢速开始和结束
+   */
   easeInOut = "ease-in-out"
 }
 
@@ -54,7 +69,7 @@ export interface IXhTransitionOptions {
    */
   readonly delay?: number;
   /**
-   * 帧率 (即每秒回调多少次, 若为-1则自动处理)
+   * 帧率 (即每秒回调多少次, 若为-1则使用requestAnimationFrame自动处理)
    */
   readonly fps?: number;
   /**
@@ -78,12 +93,12 @@ export interface IXhTransitionOptions {
 /**
  * 过渡动画通用回调函数
  */
-export type XhTransitionCommonCallback = (transition: XhTransition) => void;
+export type XhTransitionCommonCallback = (instance: XhTransition) => void;
 
 /**
  * 过渡动画值变化回调函数
  */
-export type XhTransitionValueCallback = (value: number, transition: XhTransition) => void;
+export type XhTransitionValueCallback = (value: number, instance: XhTransition) => void;
 
 /**
  * 过渡动画运行状态
