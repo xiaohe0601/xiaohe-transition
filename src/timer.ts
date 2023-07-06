@@ -19,6 +19,13 @@ export class XhTransitionTimer {
   private _id: NullableNumber = null;
 
   /**
+   * 定时器是否正在运行
+   *
+   * @private
+   */
+  private _timing: boolean = false;
+
+  /**
    * 帧率
    *
    * @private
@@ -61,11 +68,16 @@ export class XhTransitionTimer {
     this.stop();
 
     if (this.useAnimationFrame()) {
-      this._id = requestAnimationFrame(this._callback);
+      this._id = requestAnimationFrame(() => {
+        this.animate();
+      });
     } else {
       // @ts-ignore
-      this._id = setInterval(this._callback, fps2ms(this._fps));
+      this._id = setInterval(() => {
+        this._callback();
+      }, fps2ms(this._fps));
     }
+    this._timing = true;
 
     return this;
   }
@@ -83,7 +95,25 @@ export class XhTransitionTimer {
     } else {
       clearInterval(this._id);
     }
+    this._timing = false;
     this._id = null;
+  }
+
+  /**
+   * 用于AF的回调函数包装方法
+   *
+   * @private
+   */
+  private animate() {
+    if (!this._timing) {
+      return;
+    }
+
+    this._callback();
+
+    this._id = requestAnimationFrame(() => {
+      this.animate();
+    });
   }
 
   /**
