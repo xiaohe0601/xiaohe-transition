@@ -1,46 +1,46 @@
+import XhTransition from "./index";
+
 export type NullableBoolean = boolean | null;
 export type NullableNumber = number | null;
 export type NullableString = string | null;
 
 /**
  * 过渡动画曲线配置
- *
- * @since 0.0.1
  */
 export type XhTransitionBezier = [x1: number, y1: number, x2: number, y2: number];
 
 /**
  * 过渡动画预设曲线
- *
- * @since 0.0.1
  */
-export type XhTransitionPresetBezier = "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out";
+export enum XhTransitionPresetBezier {
+  linear = "linear",
+  ease = "ease",
+  easeIn = "ease-in",
+  easeOut = "ease-out",
+  easeInOut = "ease-in-out"
+}
 
 /**
- * 过渡动画回调函数
- *
- * @since 0.0.1
+ * 过渡动画预设曲线配置
  */
-export type XhTransitionCallback = (value: number) => void;
+export type XhTransitionPresetBezierConfigType = { readonly [key in XhTransitionPresetBezier]: XhTransitionBezier };
 
 /**
  * 过渡动画配置项
- *
- * @since 0.0.1
  */
 export interface IXhTransitionOptions {
   /**
-   * 开始值
+   * 起始值
    */
-  readonly start: number;
+  readonly start?: number;
   /**
    * 目标值
    */
-  readonly target: number;
+  readonly target?: number;
   /**
-   * 动画时长
+   * 动画时长 (单位: ms)
    */
-  readonly duration: number;
+  readonly duration?: number;
   /**
    * 预设曲线
    */
@@ -50,27 +50,60 @@ export interface IXhTransitionOptions {
    */
   readonly bezier?: XhTransitionBezier;
   /**
-   * 延迟开始时间
+   * 延迟开始时间 (单位: ms)
    */
   readonly delay?: number;
+  /**
+   * 帧率 (即每秒回调多少次, 若为-1则自动处理)
+   */
+  readonly fps?: number;
+  /**
+   * 动画开始回调
+   */
+  readonly started?: XhTransitionCommonCallback;
+  /**
+   * 动画暂停回调
+   */
+  readonly paused?: XhTransitionCommonCallback;
+  /**
+   * 动画继续回调
+   */
+  readonly resumed?: XhTransitionCommonCallback;
+  /**
+   * 动画停止回调
+   */
+  readonly stopped?: XhTransitionCommonCallback;
 }
 
 /**
- * 过渡动画状态
- *
- * @since 0.0.1
+ * 过渡动画通用回调函数
  */
-export enum XhTransitionStatus {
+export type XhTransitionCommonCallback = (transition: XhTransition) => void;
+
+/**
+ * 过渡动画值变化回调函数
+ */
+export type XhTransitionValueCallback = (value: number, transition: XhTransition) => void;
+
+/**
+ * 过渡动画运行状态
+ */
+export enum XhTransitionWorkStatus {
   /**
-   * 未开始或已结束
+   * 空闲 (未开始或已停止)
    */
-  none,
+  free = "free",
   /**
-   * 动画进行中
+   * 运行中
    */
-  playing,
+  working = "working",
   /**
    * 已暂停
    */
-  paused
+  paused = "paused"
 }
+
+/**
+ * 过渡动画定时器回调函数
+ */
+export type XhTransitionTimerCallback = () => void;
