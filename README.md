@@ -39,6 +39,12 @@ yarn add xiaohe-transition
 npm install xiaohe-transition
 ```
 
+#### cdn
+
+``` html
+<script src="https://cdn.jsdelivr.net/npm/xiaohe-transition/lib/cjs/index.min.js"></script>
+```
+
 ### 🛹 使用
 
 #### 简单使用
@@ -47,6 +53,19 @@ npm install xiaohe-transition
 import XhTransition from "xiaohe-transition";
 
 const transition = new XhTransition((value) => {
+  console.log("当前值发生变化", value);
+});
+
+transition.start({
+  start: 0,
+  target: 1000
+});
+```
+
+#### 简单使用 (CDN)
+
+``` javascript
+const transition = new xh_transition.XhTransition((value) => {
   console.log("当前值发生变化", value);
 });
 

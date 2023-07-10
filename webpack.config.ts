@@ -25,7 +25,7 @@ const CjsConfig = merge(CommonConfig, {
   output: {
     path: path.resolve(__dirname, "lib", "cjs"),
     library: {
-      name: "xiaohe-transition",
+      name: "xh_transition",
       type: "umd",
       umdNamedDefine: true
     }
