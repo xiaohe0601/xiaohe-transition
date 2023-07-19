@@ -73,11 +73,16 @@ export default class XhTransition {
   /**
    * 构造函数
    *
+   * @param callback    动画值变化回调函数
+   */
+  constructor(callback: XhTransitionValueCallback)
+  /**
+   * 构造函数
+   *
    * @param options     配置项
    * @param callback    动画值变化回调函数
    */
   constructor(options: IXhTransitionOptions, callback: XhTransitionValueCallback)
-  constructor(callback: XhTransitionValueCallback)
   constructor(optionsOrCallback: IXhTransitionOptions | XhTransitionValueCallback, callback?: XhTransitionValueCallback) {
     if (typeof optionsOrCallback === "function") {
       this._options = {};
@@ -86,6 +91,21 @@ export default class XhTransition {
       this._options = optionsOrCallback;
       this._callback = callback!!;
     }
+  }
+
+  /**
+   * 获取或更新配置项
+   *
+   * @since 0.0.11
+   * @param [options]   配置项
+   * @returns {IXhTransitionOptions}    配置项
+   */
+  public options(options?: IXhTransitionOptions): IXhTransitionOptions {
+    if (options != null) {
+      this._options = Object.assign({}, this._options, options);
+    }
+
+    return this._options;
   }
 
   /**
@@ -128,9 +148,9 @@ export default class XhTransition {
   /**
    * 启动动画
    *
-   * @param options   配置项
+   * @param [options]   配置项
    */
-  public start(options: IXhTransitionOptions): void {
+  public start(options?: IXhTransitionOptions): void {
     if (this.status() !== XhTransitionWorkStatus.free) {
       this.stop();
     }
@@ -141,7 +161,7 @@ export default class XhTransition {
       bezier,
       delay = XhDefaultTransitionDelay,
       fps = XhDefaultTransitionFps
-    } = this._options = Object.assign({}, this._options, options);
+    } = this.options(options);
 
     this._bezier = BezierEasing(...(bezier ?? XhTransitionPresetBezierConfig[preset]));
 
