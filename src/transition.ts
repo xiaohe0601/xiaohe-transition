@@ -145,8 +145,7 @@ export default class XhTransition {
 
     this._bezier = BezierEasing(...(bezier ?? XhTransitionPresetBezierConfig[preset]));
 
-    const currentTime = Date.now();
-    const startTime = currentTime + delay;
+    const startTime = Date.now() + delay;
 
     this._timer = new XhTransitionTimer(fps, () => {
       // 当前时间进度 = (当前时间 - 开始时间 - 暂停累计时间) / 动画时长
