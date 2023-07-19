@@ -88,6 +88,12 @@ export interface IXhTransitionOptions {
    * 动画停止回调
    */
   readonly stopped?: XhTransitionCommonCallback;
+  /**
+   * 动画完成回调
+   *
+   * @since 0.0.10
+   */
+  readonly completed?: XhTransitionCommonCallback;
 }
 
 /**

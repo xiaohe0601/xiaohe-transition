@@ -104,7 +104,7 @@ export class XhTransitionTimer {
    *
    * @private
    */
-  private animate() {
+  private animate(): void {
     if (!this._timing) {
       return;
     }

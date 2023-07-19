@@ -101,6 +101,10 @@ const transition = new XhTransition({
   },
   stopped() {
     console.log("动画停止~");
+  },
+  // @since 0.0.10
+  completed() {
+    console.log("动画完成~");
   }
 }, (value) => {
   console.log("当前值发生变化", value);
@@ -164,6 +168,23 @@ constructor(options: IXhTransitionOptions, callback: XhTransitionValueCallback);
 
 ``` typescript
 status(): XhTransitionWorkStatus;
+```
+
+#### 获取当前时间进度
+
+``` typescript
+// @since 0.0.10
+// 取值范围: 0 ~ 1
+progress(): number;
+```
+
+#### 获取当前值
+
+> 请保证该方法在XhTransition#start之后调用
+
+``` typescript
+// @since 0.0.10
+value(): number;
 ```
 
 #### 启动动画
@@ -242,6 +263,12 @@ interface IXhTransitionOptions {
    * 动画停止回调
    */
   readonly stopped?: XhTransitionCommonCallback;
+  /**
+   * 动画完成回调
+   *
+   * @since 0.0.10
+   */
+  readonly completed?: XhTransitionCommonCallback;
 }
 ```
 

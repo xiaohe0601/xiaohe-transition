@@ -1,7 +1,7 @@
 <template>
   <div class="count-to-demo">
     <div class="count-to-demo__body">
-      <span class="count-to-demo__number">{{ valueShow }}</span>
+      <span class="count-to-demo__number">{{ tweened }}</span>
     </div>
 
     <div class="div-scroll-demo__footer">
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       value: 666,
-      valueShow: 666
+      tweened: 666
     };
   },
   watch: {
@@ -44,7 +44,7 @@ export default {
         duration: 1000,
         preset: XhTransitionPresetBezier.easeOut
       }, (value) => {
-        this.valueShow = value.toFixed(0);
+        this.tweened = value.toFixed(0);
       });
     },
     plus100() {

@@ -21,11 +21,26 @@ export default class XhTransition {
   private _options: IXhTransitionOptions;
 
   /**
+   * 动画值变化回调函数
+   *
+   * @private
+   */
+  private readonly _callback: XhTransitionValueCallback;
+
+  /**
    * 运行状态
    *
    * @private
    */
   private _status: XhTransitionWorkStatus = XhTransitionWorkStatus.free;
+
+  /**
+   * 当前时间进度 (取值范围: 0 ~ 1)
+   *
+   * @since 0.0.10
+   * @private
+   */
+  private _progress: number = 0;
 
   /**
    * 贝塞尔曲线
@@ -40,13 +55,6 @@ export default class XhTransition {
    * @private
    */
   private _timer: XhTransitionTimer | null = null;
-
-  /**
-   * 动画值变化回调函数
-   *
-   * @private
-   */
-  private readonly _callback: XhTransitionValueCallback;
 
   /**
    * 上次暂停时间戳
@@ -68,8 +76,8 @@ export default class XhTransition {
    * @param options     配置项
    * @param callback    动画值变化回调函数
    */
-  constructor(options: IXhTransitionOptions, callback: XhTransitionValueCallback);
-  constructor(callback: XhTransitionValueCallback);
+  constructor(options: IXhTransitionOptions, callback: XhTransitionValueCallback)
+  constructor(callback: XhTransitionValueCallback)
   constructor(optionsOrCallback: IXhTransitionOptions | XhTransitionValueCallback, callback?: XhTransitionValueCallback) {
     if (typeof optionsOrCallback === "function") {
       this._options = {};
@@ -90,6 +98,34 @@ export default class XhTransition {
   }
 
   /**
+   * 获取当前时间进度
+   *
+   * @since 0.0.10
+   * @returns {number}    当前时间进度
+   */
+  public progress(): number {
+    return this._progress;
+  }
+
+  /**
+   * 获取当前值
+   *
+   * @since 0.0.10
+   * @returns {number}    当前值
+   */
+  public value(): number {
+    const { start = 0, target = 0 } = this._options;
+
+    if (this._bezier == null) {
+      throw new Error("需要先调用XhTransition#start方法以创建BezierEasing实例！");
+    }
+
+    // 当前曲线进度 = bezier(当前时间进度)
+    // 当前值 = 当前曲线进度 * (目标值 - 起始值) + 起始值
+    return this._bezier(this._progress) * (target - start) + start;
+  }
+
+  /**
    * 启动动画
    *
    * @param options   配置项
@@ -100,8 +136,6 @@ export default class XhTransition {
     }
 
     const {
-      start = 0,
-      target = 0,
       duration = XhDefaultTransitionDuration,
       preset = XhDefaultTransitionPreset,
       bezier,
@@ -116,23 +150,22 @@ export default class XhTransition {
 
     this._timer = new XhTransitionTimer(fps, () => {
       // 当前时间进度 = (当前时间 - 开始时间 - 暂停累计时间) / 动画时长
-      const time = Math.max(0, Math.min(1, (Date.now() - startTime - this._pauses) / duration));
+      const progress = (Date.now() - startTime - this._pauses) / duration;
+      this._progress = Math.max(0, Math.min(1, progress));
 
-      // 当前曲线进度 = bezier(当前时间进度)
-      // 当前值 = 当前曲线进度 * (目标值 - 起始值) + 起始值
-      const value = this._bezier!!(time) * (target - start) + start;
+      this._callback(this.value(), this);
 
-      this._callback(value, this);
-
-      if (time >= 1) {
+      if (this._progress >= 1) {
         this.stop();
+
+        this._options.completed?.(this);
       }
     }).start();
 
     this._status = XhTransitionWorkStatus.working;
 
     this._options.started?.(this);
-  };
+  }
 
   /**
    * 暂停动画
@@ -149,7 +182,7 @@ export default class XhTransition {
     this._status = XhTransitionWorkStatus.paused;
 
     this._options.paused?.(this);
-  };
+  }
 
   /**
    * 继续动画
@@ -168,7 +201,7 @@ export default class XhTransition {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.resumed?.(this);
-  };
+  }
 
   /**
    * 停止动画
@@ -179,14 +212,25 @@ export default class XhTransition {
       this._timer = null;
     }
 
+    this.reset();
+
+    this._options.stopped?.(this);
+  }
+
+  /**
+   * 重置动画数据
+   *
+   * @since 0.0.10
+   * @private
+   */
+  private reset(): void {
+    this._status = XhTransitionWorkStatus.free;
+    this._progress = 0;
+
     this._bezier = null;
 
     this._last = 0;
     this._pauses = 0;
-
-    this._status = XhTransitionWorkStatus.free;
-
-    this._options.stopped?.(this);
-  };
+  }
 
 }
