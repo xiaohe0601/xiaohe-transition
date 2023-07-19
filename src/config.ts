@@ -1,4 +1,4 @@
-import { XhTransitionPresetBezier, XhTransitionPresetBezierConfigType } from "./types";
+import { XhTransitionPresetBezier, XhTransitionPresetBezierConfigType, XhTransitionRepeatMode } from "./types";
 
 /**
  * 过渡动画默认动画时长
@@ -35,3 +35,17 @@ export const XhTransitionPresetBezierConfig: XhTransitionPresetBezierConfigType 
   [XhTransitionPresetBezier.easeOut]: [0, 0, 0.58, 1],
   [XhTransitionPresetBezier.easeInOut]: [0.42, 0, 0.58, 1]
 };
+
+/**
+ * 过渡动画重复器默认重复次数
+ *
+ * @since 0.0.11
+ */
+export const XhDefaultTransitionRepeatCount = -1;
+
+/**
+ * 过渡动画重复器默认重复模式
+ *
+ * @since 0.0.11
+ */
+export const XhDefaultTransitionRepeatMode = XhTransitionRepeatMode.normal;

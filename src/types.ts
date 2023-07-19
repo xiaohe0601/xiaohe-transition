@@ -1,5 +1,7 @@
 import XhTransition from "./transition";
 
+import { XhTransitionRepeater } from "./repeater";
+
 export type NullableBoolean = boolean | null;
 export type NullableNumber = number | null;
 export type NullableString = string | null;
@@ -128,3 +130,78 @@ export enum XhTransitionWorkStatus {
  * 过渡动画定时器回调函数
  */
 export type XhTransitionTimerCallback = () => void;
+
+/**
+ * 过渡动画重复器配置项
+ *
+ * @since 0.0.11
+ */
+export interface IXhTransitionRepeaterOptions {
+  /**
+   * 重复次数 (<= 0 表示无限重复)
+   */
+  readonly count?: number;
+  /**
+   * 重复模式
+   */
+  readonly mode?: XhTransitionRepeatMode;
+  /**
+   * 动画开始回调
+   */
+  readonly started?: XhTransitionRepeaterCommonCallback;
+  /**
+   * 动画暂停回调
+   */
+  readonly paused?: XhTransitionRepeaterCommonCallback;
+  /**
+   * 动画继续回调
+   */
+  readonly resumed?: XhTransitionRepeaterCommonCallback;
+  /**
+   * 动画停止回调
+   */
+  readonly stopped?: XhTransitionRepeaterCommonCallback;
+  /**
+   * 动画完成回调
+   */
+  readonly completed?: XhTransitionRepeaterCommonCallback;
+}
+
+/**
+ * 过渡动画重复器通用回调函数
+ *
+ * @since 0.0.11
+ */
+export type XhTransitionRepeaterCommonCallback = (instance: XhTransitionRepeater) => void;
+
+/**
+ * 过渡动画重复器重复模式
+ *
+ * @since 0.0.11
+ */
+export enum XhTransitionRepeatMode {
+  /**
+   * 正常播放
+   */
+  normal = "normal",
+  /**
+   * 轮流反向播放
+   */
+  alternate = "alternate"
+}
+
+/**
+ * 过渡动画重复器播放方向
+ *
+ * @since 0.0.11
+ */
+export enum XhTransitionRepeatDirection {
+  /**
+   * 正向
+   */
+  forward = "forward",
+  /**
+   * 反向
+   */
+  backward = "backward"
+}
