@@ -1,4 +1,6 @@
-import { IXhTransitionRepeaterOptions, XhTransitionRepeatDirection } from "./types";
+import { IXhTransitionRepeaterOptions, XhTransitionRepeatDirection, XhTransitionRepeatMode, XhTransitionWorkStatus } from "./types";
+
+import { XhDefaultTransitionRepeatCount, XhDefaultTransitionRepeatMode } from "./config";
 
 import XhTransition from "./transition";
 
@@ -25,11 +27,18 @@ export class XhTransitionRepeater {
   private _options: IXhTransitionRepeaterOptions;
 
   /**
+   * 运行状态
+   *
+   * @private
+   */
+  private _status: XhTransitionWorkStatus = XhTransitionWorkStatus.free;
+
+  /**
    * 已播放次数
    *
    * @private
    */
-  private _count: number = 0;
+  private _counts: number = 0;
 
   /**
    * 当前播放方向
@@ -64,33 +73,140 @@ export class XhTransitionRepeater {
   }
 
   /**
+   * 获取运行状态
+   *
+   * @returns {XhTransitionWorkStatus}    运行状态
+   */
+  public status(): XhTransitionWorkStatus {
+    return this._status;
+  }
+
+  /**
+   * 获取已播放次数
+   *
+   * @returns {number}    已播放次数
+   */
+  public counts(): number {
+    return this._counts;
+  }
+
+  /**
+   * 获取当前播放方向
+   *
+   * @returns {XhTransitionRepeatDirection}   当前播放方向
+   */
+  public direction(): XhTransitionRepeatDirection {
+    return this._direction;
+  }
+
+  /**
    * 启动重复器
    *
    * @param [options]   配置项
    */
   public start(options?: IXhTransitionRepeaterOptions): void {
+    if (this.status() !== XhTransitionWorkStatus.free) {
+      this.stop();
+    }
 
+    const {
+      count = XhDefaultTransitionRepeatCount,
+      mode = XhDefaultTransitionRepeatMode
+    } = this.options(options);
+
+    const completer = (transition: XhTransition) => {
+      this._counts += 1;
+
+      if (this.counts() >= count) {
+        return;
+      }
+
+      const { start, target } = transition.options();
+
+      switch (mode) {
+        case XhTransitionRepeatMode.normal: {
+          transition.start({
+            start,
+            target,
+            completed: completer
+          });
+          break;
+        }
+        case XhTransitionRepeatMode.alternate: {
+          const direction = this.direction();
+
+          switch (direction) {
+            case XhTransitionRepeatDirection.forward: {
+              transition.start({
+                start: target,
+                target: start,
+                completed: completer
+              });
+              break;
+            }
+            case XhTransitionRepeatDirection.backward: {
+              transition.start({
+                start,
+                target,
+                completed: completer
+              });
+              break;
+            }
+          }
+
+          break;
+        }
+      }
+    };
+
+    this._transition.start({
+      completed: completer
+    });
+
+    this._status = XhTransitionWorkStatus.working;
+
+    this._options.started?.(this);
   }
 
   /**
    * 暂停重复动画
    */
   public pause(): void {
+    if (this.status() !== XhTransitionWorkStatus.working) {
+      return;
+    }
 
+    this._transition.pause();
+
+    this._status = XhTransitionWorkStatus.paused;
+
+    this._options.paused?.(this);
   }
 
   /**
    * 继续重复动画
    */
   public resume(): void {
+    if (this.status() !== XhTransitionWorkStatus.paused) {
+      return;
+    }
 
+    this._transition.resume();
+
+    this._status = XhTransitionWorkStatus.working;
+
+    this._options.resumed?.(this);
   }
 
   /**
    * 停止重复器
    */
   public stop(): void {
+    this._transition.stop();
 
+    this.reset();
+
+    this._options.stopped?.(this);
   }
 
   /**
@@ -99,7 +215,10 @@ export class XhTransitionRepeater {
    * @private
    */
   private reset(): void {
+    this._status = XhTransitionWorkStatus.free;
 
+    this._counts = 0;
+    this._direction = XhTransitionRepeatDirection.forward;
   }
 
 }

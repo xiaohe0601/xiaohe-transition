@@ -142,7 +142,7 @@ export default class XhTransition {
 
     // 当前曲线进度 = bezier(当前时间进度)
     // 当前值 = 当前曲线进度 * (目标值 - 起始值) + 起始值
-    return this._bezier(this._progress) * (target - start) + start;
+    return this._bezier(this.progress()) * (target - start) + start;
   }
 
   /**
@@ -174,7 +174,7 @@ export default class XhTransition {
 
       this._callback(this.value(), this);
 
-      if (this._progress >= 1) {
+      if (this.progress() >= 1) {
         this.stop();
 
         this._options.completed?.(this);
