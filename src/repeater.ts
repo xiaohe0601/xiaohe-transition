@@ -102,9 +102,10 @@ export class XhTransitionRepeater {
   /**
    * 启动重复器
    *
-   * @param [options]   配置项
+   * @param [options]                   配置项
+   * @returns {XhTransitionRepeater}    重复器实例
    */
-  public start(options?: IXhTransitionRepeaterOptions): void {
+  public start(options?: IXhTransitionRepeaterOptions): XhTransitionRepeater {
     if (this.status() !== XhTransitionWorkStatus.free) {
       this.stop();
     }
@@ -167,14 +168,18 @@ export class XhTransitionRepeater {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.started?.(this, this._transition);
+
+    return this;
   }
 
   /**
    * 暂停重复动画
+   *
+   * @returns {XhTransitionRepeater}    重复器实例
    */
-  public pause(): void {
+  public pause(): XhTransitionRepeater {
     if (this.status() !== XhTransitionWorkStatus.working) {
-      return;
+      return this;
     }
 
     this._transition.pause();
@@ -182,14 +187,18 @@ export class XhTransitionRepeater {
     this._status = XhTransitionWorkStatus.paused;
 
     this._options.paused?.(this, this._transition);
+
+    return this;
   }
 
   /**
    * 继续重复动画
+   *
+   * @returns {XhTransitionRepeater}    重复器实例
    */
-  public resume(): void {
+  public resume(): XhTransitionRepeater {
     if (this.status() !== XhTransitionWorkStatus.paused) {
-      return;
+      return this;
     }
 
     this._transition.resume();
@@ -197,17 +206,23 @@ export class XhTransitionRepeater {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.resumed?.(this, this._transition);
+
+    return this;
   }
 
   /**
    * 停止重复器
+   *
+   * @returns {XhTransitionRepeater}    重复器实例
    */
-  public stop(): void {
+  public stop(): XhTransitionRepeater {
     this._transition.stop();
 
     this.reset();
 
     this._options.stopped?.(this, this._transition);
+
+    return this;
   }
 
   /**

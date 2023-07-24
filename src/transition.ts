@@ -148,9 +148,10 @@ export default class XhTransition {
   /**
    * 启动动画
    *
-   * @param [options]   配置项
+   * @param [options]           配置项
+   * @returns {XhTransition}    过渡动画实例
    */
-  public start(options?: IXhTransitionOptions): void {
+  public start(options?: IXhTransitionOptions): XhTransition {
     if (this.status() !== XhTransitionWorkStatus.free) {
       this.stop();
     }
@@ -184,14 +185,18 @@ export default class XhTransition {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.started?.(this);
+
+    return this;
   }
 
   /**
    * 暂停动画
+   *
+   * @returns {XhTransition}    过渡动画实例
    */
-  public pause(): void {
+  public pause(): XhTransition {
     if (this.status() !== XhTransitionWorkStatus.working || this._timer == null) {
-      return;
+      return this;
     }
 
     this._timer.stop();
@@ -201,14 +206,18 @@ export default class XhTransition {
     this._status = XhTransitionWorkStatus.paused;
 
     this._options.paused?.(this);
+
+    return this;
   }
 
   /**
    * 继续动画
+   *
+   * @returns {XhTransition}    过渡动画实例
    */
-  public resume(): void {
+  public resume(): XhTransition {
     if (this.status() !== XhTransitionWorkStatus.paused || this._timer == null) {
-      return;
+      return this;
     }
 
     if (this._last > 0) {
@@ -220,12 +229,16 @@ export default class XhTransition {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.resumed?.(this);
+
+    return this;
   }
 
   /**
    * 停止动画
+   *
+   * @returns {XhTransition}    过渡动画实例
    */
-  public stop(): void {
+  public stop(): XhTransition {
     if (this._timer != null) {
       this._timer.stop();
       this._timer = null;
@@ -234,6 +247,8 @@ export default class XhTransition {
     this.reset();
 
     this._options.stopped?.(this);
+
+    return this;
   }
 
   /**
