@@ -84,10 +84,12 @@ export class XhTransitionTimer {
 
   /**
    * 停止定时器
+   *
+   * @returns {XhTransitionTimer}   定时器实例
    */
-  public stop(): void {
+  public stop(): XhTransitionTimer {
     if (this._id == null) {
-      return;
+      return this;
     }
 
     if (this.useAnimationFrame()) {
@@ -97,6 +99,8 @@ export class XhTransitionTimer {
     }
     this._timing = false;
     this._id = null;
+
+    return this;
   }
 
   /**
