@@ -162,6 +162,10 @@ export interface IXhTransitionRepeaterOptions {
    */
   readonly stopped?: XhTransitionRepeaterCommonCallback;
   /**
+   * 动画重复回调
+   */
+  readonly repeated?: XhTransitionRepeaterCountCallback;
+  /**
    * 动画完成回调
    */
   readonly completed?: XhTransitionRepeaterCommonCallback;
@@ -172,7 +176,14 @@ export interface IXhTransitionRepeaterOptions {
  *
  * @since 0.0.11
  */
-export type XhTransitionRepeaterCommonCallback = (instance: XhTransitionRepeater) => void;
+export type XhTransitionRepeaterCommonCallback = (instance: XhTransitionRepeater, transition: XhTransition) => void;
+
+/**
+ * 过渡动画重复器次数回调函数
+ *
+ * @since 0.0.11
+ */
+export type XhTransitionRepeaterCountCallback = (count: number, instance: XhTransitionRepeater, transition: XhTransition) => void;
 
 /**
  * 过渡动画重复器重复模式

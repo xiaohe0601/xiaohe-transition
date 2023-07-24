@@ -17,7 +17,7 @@ export class XhTransitionRepeater {
    *
    * @private
    */
-  private _transition: XhTransition;
+  private readonly _transition: XhTransition;
 
   /**
    * 配置项
@@ -117,7 +117,9 @@ export class XhTransitionRepeater {
     const completer = (transition: XhTransition) => {
       this._counts += 1;
 
-      if (this.counts() >= count) {
+      this._options.repeated?.(this.counts(), this, transition);
+
+      if (count > 0 && this.counts() >= count) {
         return;
       }
 
@@ -130,26 +132,25 @@ export class XhTransitionRepeater {
             target,
             completed: completer
           });
+          this._direction = XhTransitionRepeatDirection.forward;
           break;
         }
         case XhTransitionRepeatMode.alternate: {
           const direction = this.direction();
 
+          transition.start({
+            start: target,
+            target: start,
+            completed: completer
+          });
+
           switch (direction) {
             case XhTransitionRepeatDirection.forward: {
-              transition.start({
-                start: target,
-                target: start,
-                completed: completer
-              });
+              this._direction = XhTransitionRepeatDirection.backward;
               break;
             }
             case XhTransitionRepeatDirection.backward: {
-              transition.start({
-                start,
-                target,
-                completed: completer
-              });
+              this._direction = XhTransitionRepeatDirection.forward;
               break;
             }
           }
@@ -165,7 +166,7 @@ export class XhTransitionRepeater {
 
     this._status = XhTransitionWorkStatus.working;
 
-    this._options.started?.(this);
+    this._options.started?.(this, this._transition);
   }
 
   /**
@@ -180,7 +181,7 @@ export class XhTransitionRepeater {
 
     this._status = XhTransitionWorkStatus.paused;
 
-    this._options.paused?.(this);
+    this._options.paused?.(this, this._transition);
   }
 
   /**
@@ -195,7 +196,7 @@ export class XhTransitionRepeater {
 
     this._status = XhTransitionWorkStatus.working;
 
-    this._options.resumed?.(this);
+    this._options.resumed?.(this, this._transition);
   }
 
   /**
@@ -206,7 +207,7 @@ export class XhTransitionRepeater {
 
     this.reset();
 
-    this._options.stopped?.(this);
+    this._options.stopped?.(this, this._transition);
   }
 
   /**
