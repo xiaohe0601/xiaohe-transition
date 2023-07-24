@@ -46,7 +46,7 @@
     /* 指定源文件中的根文件夹。Specify the root folder within your source files. */
     "rootDir": "./src",
     /* 指定TypeScript如何从给定的模块说明符查找文件。Specify how TypeScript looks up a file from a given module specifier. */
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Node",
     /* 指定解析非相对模块名称的基目录。Specify the base directory to resolve non-relative module names. */
     // "baseUrl": "./",
     /* 指定一组将导入重新映射到其他查找位置的条目。Specify a set of entries that re-map imports to additional lookup locations. */
@@ -96,7 +96,7 @@
     /* 指定一个文件，将所有输出捆绑到一个JavaScript文件中。如果"declaration"为true，还指定一个捆绑所有.d.ts输出的文件。Specify a file that bundles all outputs into one JavaScript file. If "declaration" is true, also designates a file that bundles all .d.ts output. */
     // "outFile": "./",
     /* 为所有输出的文件指定输出文件夹。Specify an output folder for all emitted files. */
-    "outDir": "./lib/esm",
+    // "outDir": "./",
     /* 禁止输出注释。Disable emitting comments. */
     // "removeComments": true,
     /* 禁用从编译中输出文件。Disable emitting files from a compilation. */
@@ -126,7 +126,7 @@
     /* 禁止擦除生成代码中的"const enum"声明。Disable erasing "const enum" declarations in generated code. */
     // "preserveConstEnums": true,
     /* 指定生成的声明文件的输出目录。Specify the output directory for generated declaration files. */
-    "declarationDir": "./lib/esm",
+    "declarationDir": "./lib/types",
     /* 在JavaScript输出中保留未使用的导入值，否则这些值将被删除。Preserve unused imported values in the JavaScript output that would otherwise be removed. */
     // "preserveValueImports": true,
     /* >>> Interop Constraints <<< */
@@ -187,11 +187,6 @@
     /* 跳过所有.d.ts文件的类型检查。Skip type checking all .d.ts files. */
     "skipLibCheck": true
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "UMD"
-    }
-  },
-  "include": ["./src/**/*.ts", "./src/**/*.d.ts"],
+  "include": ["./src/**/*.ts", "./src/**/*.d.ts", "rollup.config.ts"],
   "exclude": ["node_modules"]
 }

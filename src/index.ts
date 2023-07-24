@@ -6,6 +6,4 @@ export * from "./utils";
 export * from "./timer";
 export * from "./repeater";
 
-export { XhTransition };
-
-export default XhTransition;
+export { XhTransition as default, XhTransition };
