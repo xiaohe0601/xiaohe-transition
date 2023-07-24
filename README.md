@@ -19,6 +19,8 @@
 
 - 🍟 支持中途打断动画
 
+- 🌭 支持往复播放动画
+
 - 🧀 支持TypeScript
 
 - 🍳 支持免费商用
@@ -75,6 +77,10 @@ transition.start({
 });
 ```
 
+#### 重复播放
+
+> 请查看 [XhTransitionRepeater](./docs/repeater.md) 文档
+
 #### 进阶用法
 
 ``` javascript
@@ -90,23 +96,23 @@ const transition = new XhTransition({
   delay: 500,
   // 帧率
   fps: 60,
-  started() {
+  started(instance) {
     console.log("动画开始~");
   },
-  paused() {
+  paused(instance) {
     console.log("动画暂停~");
   },
-  resumed() {
+  resumed(instance) {
     console.log("动画继续~");
   },
-  stopped() {
+  stopped(instance) {
     console.log("动画停止~");
   },
   // @since 0.0.10
-  completed() {
+  completed(instance) {
     console.log("动画完成~");
   }
-}, (value) => {
+}, (value, instance) => {
   console.log("当前值发生变化", value);
 });
 
@@ -164,6 +170,13 @@ constructor(options: IXhTransitionOptions, callback: XhTransitionValueCallback);
 
 ### 🎮 实例方法
 
+#### 获取或更新配置项
+
+``` typescript
+// @since 0.0.11
+options(options?: IXhTransitionOptions): IXhTransitionOptions;
+```
+
 #### 获取运行状态
 
 ``` typescript
@@ -192,25 +205,29 @@ value(): number;
 > 该方法可以接收一个配置项，除了上方介绍的 `start` 和 `target` 属性外，亦支持 `IXhTransitionOptions` 中的所有属性，将会采用 `Object.assign` 与原配置合并
 
 ``` typescript
-start(options: IXhTransitionOptions): void;
+// @since 0.0.11 返回过渡动画实例
+start(options: IXhTransitionOptions): XhTransition;
 ```
 
 #### 暂停动画
 
 ``` typescript
-pause(): void;
+// @since 0.0.11 返回过渡动画实例
+pause(): XhTransition;
 ```
 
 #### 继续动画
 
 ``` typescript
-resume(): void;
+// @since 0.0.11 返回过渡动画实例
+resume(): XhTransition;
 ```
 
 #### 停止动画
 
 ``` typescript
-stop(): void;
+// @since 0.0.11 返回过渡动画实例
+stop(): XhTransition;
 ```
 
 ### 🚀 类型定义

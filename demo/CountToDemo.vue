@@ -38,6 +38,9 @@ export default {
   created() {
     this.init();
   },
+  beforeDestroy() {
+    this.destroy();
+  },
   methods: {
     init() {
       this.transition = new XhTransition({
@@ -61,6 +64,10 @@ export default {
     },
     stop() {
       this.transition.stop();
+    },
+    destroy() {
+      this.transition.stop();
+      this.transition = null;
     }
   }
 };
