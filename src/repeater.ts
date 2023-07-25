@@ -1,4 +1,5 @@
-import { IXhTransitionRepeaterOptions, XhTransitionRepeatDirection, XhTransitionRepeatMode, XhTransitionWorkStatus } from "./types";
+import type { IXhTransitionRepeaterOptions } from "./types";
+import { XhTransitionRepeatDirection, XhTransitionRepeatMode, XhTransitionWorkStatus } from "./types";
 
 import { XhDefaultTransitionRepeatCount, XhDefaultTransitionRepeatMode } from "./config";
 

@@ -1,6 +1,6 @@
 {
   "name": "xiaohe-transition",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
   "scripts": {
     "build:rollup": "rollup --config rollup.config.ts --configPlugin typescript",

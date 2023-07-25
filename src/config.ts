@@ -1,4 +1,5 @@
-import { XhTransitionPresetBezier, XhTransitionPresetBezierConfigType, XhTransitionRepeatMode } from "./types";
+import type { XhTransitionPresetBezierConfigType } from "./types";
+import { XhTransitionPresetBezier, XhTransitionRepeatMode } from "./types";
 
 /**
  * 过渡动画默认动画时长

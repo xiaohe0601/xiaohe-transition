@@ -1,4 +1,4 @@
-import { NullableNumber, XhTransitionTimerCallback } from "./types";
+import type { NullableNumber, XhTransitionTimerCallback } from "./types";
 
 import { XhDefaultTransitionCompatibleFps } from "./config";
 

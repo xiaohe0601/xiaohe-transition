@@ -1,4 +1,5 @@
-import { IXhTransitionOptions, XhTransitionValueCallback, XhTransitionWorkStatus } from "./types";
+import type { IXhTransitionOptions, XhTransitionValueCallback } from "./types";
+import { XhTransitionWorkStatus } from "./types";
 
 import { XhDefaultTransitionDelay, XhDefaultTransitionDuration, XhDefaultTransitionFps, XhDefaultTransitionPreset, XhTransitionPresetBezierConfig } from "./config";
 
