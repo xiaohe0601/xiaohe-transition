@@ -44,7 +44,7 @@
     /* 指定生成什么模块代码。Specify what module code is generated. */
     "module": "ESNext",
     /* 指定源文件中的根文件夹。Specify the root folder within your source files. */
-    "rootDir": "./src",
+    // "rootDir": "./",
     /* 指定TypeScript如何从给定的模块说明符查找文件。Specify how TypeScript looks up a file from a given module specifier. */
     "moduleResolution": "Node",
     /* 指定解析非相对模块名称的基目录。Specify the base directory to resolve non-relative module names. */
@@ -126,7 +126,7 @@
     /* 禁止擦除生成代码中的"const enum"声明。Disable erasing "const enum" declarations in generated code. */
     // "preserveConstEnums": true,
     /* 指定生成的声明文件的输出目录。Specify the output directory for generated declaration files. */
-    "declarationDir": "./lib/types",
+    "declarationDir": "./lib/esm",
     /* 在JavaScript输出中保留未使用的导入值，否则这些值将被删除。Preserve unused imported values in the JavaScript output that would otherwise be removed. */
     // "preserveValueImports": true,
     /* >>> Interop Constraints <<< */

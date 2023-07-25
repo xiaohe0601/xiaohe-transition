@@ -1,10 +1,13 @@
 import { defineConfig } from "rollup";
 
-import { glob } from "glob";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import typescript from "rollup-plugin-ts";
+import { terser } from "rollup-plugin-terser";
+
 import path from "node:path";
 import url from "node:url";
-
-import typescript from "rollup-plugin-ts";
+import * as glob from "glob";
 
 export default [
   defineConfig({
@@ -20,12 +23,15 @@ export default [
       }
     },
     plugins: [
+      resolve(),
+      commonjs(),
       typescript({
         transpiler: {
           typescriptSyntax: "typescript",
           otherSyntax: "babel"
         }
-      })
+      }),
+      terser()
     ]
   }),
   defineConfig({
@@ -45,12 +51,15 @@ export default [
       }
     },
     plugins: [
+      resolve(),
+      commonjs(),
       typescript({
         transpiler: {
           typescriptSyntax: "typescript",
           otherSyntax: "babel"
         }
-      })
+      }),
+      terser()
     ]
   })
 ];

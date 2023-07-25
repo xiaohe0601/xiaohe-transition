@@ -15,23 +15,26 @@
     "@babel/preset-env": "^7.22.6",
     "@babel/preset-typescript": "^7.22.5",
     "@babel/runtime": "^7.22.6",
+    "@rollup/plugin-commonjs": "^25.0.3",
+    "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/glob": "^8.1.0",
     "@types/node": "^20.3.3",
     "glob": "^10.3.3",
     "rollup": "^3.26.3",
+    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-ts": "^3.2.0",
     "tslib": "^2.6.0",
     "typescript": "^5.1.6"
   },
   "type": "module",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
   "exports": {
     "import": "./lib/esm/index.js",
     "require": "./lib/cjs/index.js",
-    "types": "./lib/types/index.d.ts"
+    "types": "./lib/esm/index.d.ts"
   },
   "files": [
     "lib/**/*.*"
