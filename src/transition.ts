@@ -3,7 +3,7 @@ import { XhTransitionWorkStatus } from "./types";
 
 import { XhDefaultTransitionDelay, XhDefaultTransitionDuration, XhDefaultTransitionFps, XhDefaultTransitionPreset, XhTransitionPresetBezierConfig } from "./config";
 
-import { XhTransitionTimer } from "./timer";
+import XhTransitionTimer from "./timer";
 
 import BezierEasing from "bezier-easing";
 

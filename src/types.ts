@@ -1,6 +1,6 @@
 import type XhTransition from "./transition";
 
-import type { XhTransitionRepeater } from "./repeater";
+import type XhTransitionRepeater from "./repeater";
 
 export type NullableBoolean = boolean | null;
 export type NullableNumber = number | null;

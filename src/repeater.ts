@@ -11,7 +11,7 @@ import XhTransition from "./transition";
  * @since 0.0.11
  * @author 小何同学
  */
-export class XhTransitionRepeater {
+export default class XhTransitionRepeater {
 
   /**
    * 过渡动画实例

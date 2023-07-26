@@ -9,7 +9,7 @@ import { fps2ms } from "./utils";
  *
  * @author 小何同学
  */
-export class XhTransitionTimer {
+export default class XhTransitionTimer {
 
   /**
    * 定时器id
