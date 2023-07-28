@@ -53,7 +53,7 @@ export default class XhTransitionTimer {
   /**
    * 获取定时器id
    *
-   * @returns {NullableNumber}    定时器id
+   * @returns   定时器id
    */
   public id(): NullableNumber {
     return this._id;
@@ -62,7 +62,7 @@ export default class XhTransitionTimer {
   /**
    * 启动定时器
    *
-   * @returns {XhTransitionTimer}   定时器实例
+   * @returns   定时器实例
    */
   public start(): XhTransitionTimer {
     this.stop();
@@ -85,7 +85,7 @@ export default class XhTransitionTimer {
   /**
    * 停止定时器
    *
-   * @returns {XhTransitionTimer}   定时器实例
+   * @returns   定时器实例
    */
   public stop(): XhTransitionTimer {
     if (this._id == null) {
@@ -124,7 +124,7 @@ export default class XhTransitionTimer {
    * 当前环境是否支持AF
    *
    * @private
-   * @returns {boolean}   是否支持
+   * @returns   是否支持AF
    */
   private supportAnimationFrame(): boolean {
     return typeof requestAnimationFrame === "function";
@@ -134,7 +134,7 @@ export default class XhTransitionTimer {
    * 是否使用AF实现定时器
    *
    * @private
-   * @returns {boolean}   是否使用
+   * @returns   是否使用AF
    */
   private useAnimationFrame(): boolean {
     return this.supportAnimationFrame() && this._fps <= 0;

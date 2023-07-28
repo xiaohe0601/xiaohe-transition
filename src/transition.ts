@@ -99,7 +99,7 @@ export default class XhTransition {
    *
    * @since 0.0.11
    * @param [options]   配置项
-   * @returns {IXhTransitionOptions}    配置项
+   * @returns           配置项
    */
   public options(options?: IXhTransitionOptions): IXhTransitionOptions {
     if (options != null) {
@@ -112,7 +112,7 @@ export default class XhTransition {
   /**
    * 获取运行状态
    *
-   * @returns {XhTransitionWorkStatus}    运行状态
+   * @returns   运行状态
    */
   public status(): XhTransitionWorkStatus {
     return this._status;
@@ -122,7 +122,7 @@ export default class XhTransition {
    * 获取当前时间进度
    *
    * @since 0.0.10
-   * @returns {number}    当前时间进度
+   * @returns   当前时间进度
    */
   public progress(): number {
     return this._progress;
@@ -132,7 +132,7 @@ export default class XhTransition {
    * 获取当前值
    *
    * @since 0.0.10
-   * @returns {number}    当前值
+   * @returns   当前值
    */
   public value(): number {
     const { start = 0, target = 0 } = this._options;
@@ -149,8 +149,8 @@ export default class XhTransition {
   /**
    * 启动动画
    *
-   * @param [options]           配置项
-   * @returns {XhTransition}    过渡动画实例
+   * @param [options]   配置项
+   * @returns           过渡动画实例
    */
   public start(options?: IXhTransitionOptions): XhTransition {
     if (this.status() !== XhTransitionWorkStatus.free) {
@@ -193,7 +193,7 @@ export default class XhTransition {
   /**
    * 暂停动画
    *
-   * @returns {XhTransition}    过渡动画实例
+   * @returns   过渡动画实例
    */
   public pause(): XhTransition {
     if (this.status() !== XhTransitionWorkStatus.working || this._timer == null) {
@@ -214,7 +214,7 @@ export default class XhTransition {
   /**
    * 继续动画
    *
-   * @returns {XhTransition}    过渡动画实例
+   * @returns   过渡动画实例
    */
   public resume(): XhTransition {
     if (this.status() !== XhTransitionWorkStatus.paused || this._timer == null) {
@@ -237,7 +237,7 @@ export default class XhTransition {
   /**
    * 停止动画
    *
-   * @returns {XhTransition}    过渡动画实例
+   * @returns   过渡动画实例
    */
   public stop(): XhTransition {
     if (this._timer != null) {

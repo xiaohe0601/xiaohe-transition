@@ -63,7 +63,7 @@ export default class XhTransitionRepeater {
    * 获取或更新配置项
    *
    * @param [options]   配置项
-   * @returns {IXhTransitionRepeaterOptions}    配置项
+   * @returns           配置项
    */
   public options(options?: IXhTransitionRepeaterOptions): IXhTransitionRepeaterOptions {
     if (options != null) {
@@ -76,7 +76,7 @@ export default class XhTransitionRepeater {
   /**
    * 获取运行状态
    *
-   * @returns {XhTransitionWorkStatus}    运行状态
+   * @returns   运行状态
    */
   public status(): XhTransitionWorkStatus {
     return this._status;
@@ -85,7 +85,7 @@ export default class XhTransitionRepeater {
   /**
    * 获取已播放次数
    *
-   * @returns {number}    已播放次数
+   * @returns   已播放次数
    */
   public counts(): number {
     return this._counts;
@@ -94,7 +94,7 @@ export default class XhTransitionRepeater {
   /**
    * 获取当前播放方向
    *
-   * @returns {XhTransitionRepeatDirection}   当前播放方向
+   * @returns   当前播放方向
    */
   public direction(): XhTransitionRepeatDirection {
     return this._direction;
@@ -103,8 +103,8 @@ export default class XhTransitionRepeater {
   /**
    * 启动重复器
    *
-   * @param [options]                   配置项
-   * @returns {XhTransitionRepeater}    重复器实例
+   * @param [options]   配置项
+   * @returns           重复器实例
    */
   public start(options?: IXhTransitionRepeaterOptions): XhTransitionRepeater {
     if (this.status() !== XhTransitionWorkStatus.free) {
@@ -176,7 +176,7 @@ export default class XhTransitionRepeater {
   /**
    * 暂停重复动画
    *
-   * @returns {XhTransitionRepeater}    重复器实例
+   * @returns   重复器实例
    */
   public pause(): XhTransitionRepeater {
     if (this.status() !== XhTransitionWorkStatus.working) {
@@ -195,7 +195,7 @@ export default class XhTransitionRepeater {
   /**
    * 继续重复动画
    *
-   * @returns {XhTransitionRepeater}    重复器实例
+   * @returns   重复器实例
    */
   public resume(): XhTransitionRepeater {
     if (this.status() !== XhTransitionWorkStatus.paused) {
@@ -214,7 +214,7 @@ export default class XhTransitionRepeater {
   /**
    * 停止重复器
    *
-   * @returns {XhTransitionRepeater}    重复器实例
+   * @returns   重复器实例
    */
   public stop(): XhTransitionRepeater {
     this._transition.stop();
