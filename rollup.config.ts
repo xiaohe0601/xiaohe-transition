@@ -11,7 +11,7 @@ import * as glob from "glob";
 
 export default [
   defineConfig({
-    external: ["bezier-easing"],
+    external: ["bezier-easing", "nanoevents"],
     input: "src/index.ts",
     output: {
       format: "umd",
@@ -19,7 +19,8 @@ export default [
       dir: "lib/cjs",
       exports: "named",
       globals: {
-        "bezier-easing": "BezierEasing"
+        "bezier-easing": "BezierEasing",
+        "nanoevents": "nanoevents"
       }
     },
     plugins: [
@@ -35,7 +36,7 @@ export default [
     ]
   }),
   defineConfig({
-    external: ["bezier-easing"],
+    external: ["bezier-easing", "nanoevents"],
     input: Object.fromEntries(
       glob.sync("src/**/*.ts").map((file) => [
         path.relative("src", file.slice(0, file.length - path.extname(file).length)),
@@ -45,10 +46,7 @@ export default [
     output: {
       format: "es",
       dir: "lib/esm",
-      exports: "named",
-      globals: {
-        "bezier-easing": "BezierEasing"
-      }
+      exports: "named"
     },
     plugins: [
       resolve(),

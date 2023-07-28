@@ -76,6 +76,10 @@ repeater.resume();
 repeater.stop();
 ```
 
+#### 事件
+
+> 从 `0.0.17` 开始，配置项中的 `回调函数` 均支持 `on`、`once` 事件监听，用法请参考[XhTransition#事件](../README.md#事件)
+
 #### 应用场景
 
 > 为方便起见，应用场景示例以 `Vue` 举例，但并不局限于 `Vue` 使用
@@ -153,7 +157,7 @@ stop(): XhTransitionRepeater;
 #### 配置项
 
 ``` typescript
-interface IXhTransitionRepeaterOptions {
+interface IXhTransitionRepeaterOptions extends IXhTransitionRepeaterEvents {
   /**
    * 重复次数 (<= 0 表示无限重复)
    */
@@ -162,28 +166,36 @@ interface IXhTransitionRepeaterOptions {
    * 重复模式
    */
   readonly mode?: XhTransitionRepeatMode; // 默认值: XhTransitionRepeatMode.normal
+}
+
+/**
+ * 过渡动画重复器事件
+ *
+ * @since 0.0.17
+ */
+interface IXhTransitionRepeaterEvents {
   /**
-   * 动画开始回调
+   * 动画开始
    */
   readonly started?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画暂停回调
+   * 动画暂停
    */
   readonly paused?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画继续回调
+   * 动画继续
    */
   readonly resumed?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画停止回调
+   * 动画停止
    */
   readonly stopped?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画重复回调
+   * 动画重复
    */
   readonly repeated?: XhTransitionRepeaterCountCallback;
   /**
-   * 动画完成回调
+   * 动画完成
    */
   readonly completed?: XhTransitionRepeaterCommonCallback;
 }

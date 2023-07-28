@@ -145,6 +145,32 @@ setTimeout(() => {
 }, 3 * 1000);
 ```
 
+#### 事件
+
+> 从 `0.0.17` 开始，配置项中的 `回调函数` 均支持 `on`、`once` 事件监听，下面以 `started` 事件举例
+
+``` javascript
+// 监听started事件
+transition.on("started", (instance) => {
+  console.log("动画开始~");
+});
+
+// 单次监听started事件，started事件触发一次后将自动取消监听
+transition.once("started", (instance) => {
+  console.log("动画开始~");
+});
+
+// 手动取消监听started事件
+const unbind = transition.on("started", (instance) => {
+  console.log("动画开始~");
+});
+// 调用on、once返回的unbind方法即可取消监听
+unbind();
+
+// 取消监听所有事件
+transition.clearEvents();
+```
+
 #### 应用场景
 
 > 为方便起见，应用场景示例以 `Vue` 举例，但并不局限于 `Vue` 使用
@@ -242,7 +268,7 @@ stop(): XhTransition;
 #### 配置项
 
 ``` typescript
-interface IXhTransitionOptions {
+interface IXhTransitionOptions extends IXhTransitionEvents {
   /**
    * 起始值
    */
@@ -271,24 +297,32 @@ interface IXhTransitionOptions {
    * 帧率 (即每秒回调多少次, 若为-1则使用requestAnimationFrame自动处理)
    */
   readonly fps?: number; // 默认值: -1 (当不支持requestAnimationFrame时为默认值为30)
+}
+
+/**
+ * 过渡动画事件
+ *
+ * @since 0.0.17
+ */
+interface IXhTransitionEvents {
   /**
-   * 动画开始回调
+   * 动画开始
    */
   readonly started?: XhTransitionCommonCallback;
   /**
-   * 动画暂停回调
+   * 动画暂停
    */
   readonly paused?: XhTransitionCommonCallback;
   /**
-   * 动画继续回调
+   * 动画继续
    */
   readonly resumed?: XhTransitionCommonCallback;
   /**
-   * 动画停止回调
+   * 动画停止
    */
   readonly stopped?: XhTransitionCommonCallback;
   /**
-   * 动画完成回调
+   * 动画完成
    *
    * @since 0.0.10
    */
@@ -374,7 +408,9 @@ enum XhTransitionWorkStatus {
 
 ### 🛸 链接
 
-- 本插件基于 [bezier-easing](https://github.com/gre/bezier-easing) 实现
+- [bezier-easing](https://github.com/gre/bezier-easing) cubic-bezier implementation for your JavaScript animation easings.
+
+- [nanoevents](https://github.com/ai/nanoevents) Simple and tiny event emitter library for JavaScript.
 
 ### 🐶 讨论交流
 
