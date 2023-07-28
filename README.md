@@ -62,6 +62,13 @@ transition.start({
   start: 0,
   target: 1000
 });
+
+// 如果是单页应用，请在合适的时机（如：页面销毁生命周期等）销毁动画，以避免内存泄露
+// @since 0.0.17
+transition.destroy();
+
+// 0.0.17 之前的版本调用 transition.stop() 即可
+// transition.stop();
 ```
 
 #### 简单使用 (CDN)

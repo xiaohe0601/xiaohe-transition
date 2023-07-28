@@ -1,13 +1,14 @@
 {
   "name": "xiaohe-transition",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
   "scripts": {
     "build:rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "release": "pnpm run build:rollup && npm publish"
   },
   "dependencies": {
-    "bezier-easing": "^2.1.0"
+    "bezier-easing": "^2.1.0",
+    "nanoevents": "^8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.6",

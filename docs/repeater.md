@@ -19,6 +19,13 @@ const repeater = XhTransitionRepeater(transition).start();
 
 // 调用stop方法即可停止动画
 repeater.stop();
+
+// 如果是单页应用，请在合适的时机（如：页面销毁生命周期等）销毁动画，以避免内存泄露
+// @since 0.0.17
+repeater.destroy(); // repeater内部会自动调用 transition.destroy()，无需再手动调用
+
+// 0.0.17 之前的版本调用 repeater.stop() 即可
+// repeater.stop();
 ```
 
 #### 进阶用法

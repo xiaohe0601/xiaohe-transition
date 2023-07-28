@@ -1,8 +1,9 @@
-import type { IXhTransitionRepeaterOptions } from "./types";
+import type { IXhTransitionRepeaterEvents, IXhTransitionRepeaterOptions } from "./types";
 import { XhTransitionRepeatDirection, XhTransitionRepeatMode, XhTransitionWorkStatus } from "./types";
 
 import { XhDefaultTransitionRepeatCount, XhDefaultTransitionRepeatMode } from "./config";
 
+import XhTransitionEmitter from "./emitter";
 import XhTransition from "./transition";
 
 /**
@@ -11,7 +12,7 @@ import XhTransition from "./transition";
  * @since 0.0.11
  * @author 小何同学
  */
-export default class XhTransitionRepeater {
+export default class XhTransitionRepeater extends XhTransitionEmitter<IXhTransitionRepeaterEvents> {
 
   /**
    * 过渡动画实例
@@ -55,6 +56,8 @@ export default class XhTransitionRepeater {
    * @param [options]     配置项
    */
   constructor(transition: XhTransition, options?: IXhTransitionRepeaterOptions) {
+    super();
+
     this._transition = transition;
     this._options = options ?? {};
   }
@@ -120,8 +123,11 @@ export default class XhTransitionRepeater {
       this._counts += 1;
 
       this._options.repeated?.(this.counts(), this, transition);
+      this.emit("repeated", this.counts(), this, transition);
 
       if (count > 0 && this.counts() >= count) {
+        this._options.completed?.(this, this._transition);
+        this.emit("completed", this, this._transition);
         return;
       }
 
@@ -169,6 +175,7 @@ export default class XhTransitionRepeater {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.started?.(this, this._transition);
+    this.emit("started", this, this._transition);
 
     return this;
   }
@@ -188,6 +195,7 @@ export default class XhTransitionRepeater {
     this._status = XhTransitionWorkStatus.paused;
 
     this._options.paused?.(this, this._transition);
+    this.emit("paused", this, this._transition);
 
     return this;
   }
@@ -207,6 +215,7 @@ export default class XhTransitionRepeater {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.resumed?.(this, this._transition);
+    this.emit("resumed", this, this._transition);
 
     return this;
   }
@@ -222,8 +231,22 @@ export default class XhTransitionRepeater {
     this.reset();
 
     this._options.stopped?.(this, this._transition);
+    this.emit("stopped", this, this._transition);
 
     return this;
+  }
+
+  /**
+   * 销毁重复器实例
+   *
+   * @since 0.0.17
+   */
+  public destroy(): void {
+    if (this.status() !== XhTransitionWorkStatus.free) {
+      this.stop();
+    }
+
+    this.clearEvents();
   }
 
   /**

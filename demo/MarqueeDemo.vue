@@ -82,7 +82,7 @@ export default {
       this.repeater.stop();
     },
     destroy() {
-      this.repeater.stop();
+      this.repeater.destroy();
       this.transition = null;
       this.repeater = null;
     }

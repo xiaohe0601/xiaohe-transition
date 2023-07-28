@@ -45,7 +45,7 @@ export type XhTransitionPresetBezierConfigType = { readonly [key in XhTransition
 /**
  * 过渡动画配置项
  */
-export interface IXhTransitionOptions {
+export interface IXhTransitionOptions extends IXhTransitionEvents {
   /**
    * 起始值
    */
@@ -74,24 +74,32 @@ export interface IXhTransitionOptions {
    * 帧率 (即每秒回调多少次, 若为-1则使用requestAnimationFrame自动处理)
    */
   readonly fps?: number;
+}
+
+/**
+ * 过渡动画事件
+ *
+ * @since 0.0.17
+ */
+export interface IXhTransitionEvents {
   /**
-   * 动画开始回调
+   * 动画开始
    */
   readonly started?: XhTransitionCommonCallback;
   /**
-   * 动画暂停回调
+   * 动画暂停
    */
   readonly paused?: XhTransitionCommonCallback;
   /**
-   * 动画继续回调
+   * 动画继续
    */
   readonly resumed?: XhTransitionCommonCallback;
   /**
-   * 动画停止回调
+   * 动画停止
    */
   readonly stopped?: XhTransitionCommonCallback;
   /**
-   * 动画完成回调
+   * 动画完成
    *
    * @since 0.0.10
    */
@@ -136,7 +144,7 @@ export type XhTransitionTimerCallback = () => void;
  *
  * @since 0.0.11
  */
-export interface IXhTransitionRepeaterOptions {
+export interface IXhTransitionRepeaterOptions extends IXhTransitionRepeaterEvents {
   /**
    * 重复次数 (<= 0 表示无限重复)
    */
@@ -145,28 +153,36 @@ export interface IXhTransitionRepeaterOptions {
    * 重复模式
    */
   readonly mode?: XhTransitionRepeatMode;
+}
+
+/**
+ * 过渡动画重复器事件
+ *
+ * @since 0.0.17
+ */
+export interface IXhTransitionRepeaterEvents {
   /**
-   * 动画开始回调
+   * 动画开始
    */
   readonly started?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画暂停回调
+   * 动画暂停
    */
   readonly paused?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画继续回调
+   * 动画继续
    */
   readonly resumed?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画停止回调
+   * 动画停止
    */
   readonly stopped?: XhTransitionRepeaterCommonCallback;
   /**
-   * 动画重复回调
+   * 动画重复
    */
   readonly repeated?: XhTransitionRepeaterCountCallback;
   /**
-   * 动画完成回调
+   * 动画完成
    */
   readonly completed?: XhTransitionRepeaterCommonCallback;
 }

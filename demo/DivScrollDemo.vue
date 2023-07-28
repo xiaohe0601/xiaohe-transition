@@ -60,7 +60,7 @@ export default {
       this.transition.stop();
     },
     destroy() {
-      this.transition.stop();
+      this.transition.destroy();
       this.transition = null;
     }
   }

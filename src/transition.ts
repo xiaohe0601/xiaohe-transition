@@ -1,8 +1,9 @@
-import type { IXhTransitionOptions, XhTransitionValueCallback } from "./types";
+import type { IXhTransitionEvents, IXhTransitionOptions, XhTransitionValueCallback } from "./types";
 import { XhTransitionWorkStatus } from "./types";
 
 import { XhDefaultTransitionDelay, XhDefaultTransitionDuration, XhDefaultTransitionFps, XhDefaultTransitionPreset, XhTransitionPresetBezierConfig } from "./config";
 
+import XhTransitionEmitter from "./emitter";
 import XhTransitionTimer from "./timer";
 
 import BezierEasing from "bezier-easing";
@@ -12,7 +13,7 @@ import BezierEasing from "bezier-easing";
  *
  * @author 小何同学
  */
-export default class XhTransition {
+export default class XhTransition extends XhTransitionEmitter<IXhTransitionEvents> {
 
   /**
    * 配置项
@@ -85,6 +86,8 @@ export default class XhTransition {
    */
   constructor(options: IXhTransitionOptions, callback: XhTransitionValueCallback)
   constructor(optionsOrCallback: IXhTransitionOptions | XhTransitionValueCallback, callback?: XhTransitionValueCallback) {
+    super();
+
     if (typeof optionsOrCallback === "function") {
       this._options = {};
       this._callback = optionsOrCallback;
@@ -180,12 +183,14 @@ export default class XhTransition {
         this.stop();
 
         this._options.completed?.(this);
+        this.emit("completed", this);
       }
     }).start();
 
     this._status = XhTransitionWorkStatus.working;
 
     this._options.started?.(this);
+    this.emit("started", this);
 
     return this;
   }
@@ -207,6 +212,7 @@ export default class XhTransition {
     this._status = XhTransitionWorkStatus.paused;
 
     this._options.paused?.(this);
+    this.emit("paused", this);
 
     return this;
   }
@@ -230,6 +236,7 @@ export default class XhTransition {
     this._status = XhTransitionWorkStatus.working;
 
     this._options.resumed?.(this);
+    this.emit("resumed", this);
 
     return this;
   }
@@ -248,8 +255,22 @@ export default class XhTransition {
     this.reset();
 
     this._options.stopped?.(this);
+    this.emit("stopped", this);
 
     return this;
+  }
+
+  /**
+   * 销毁动画实例
+   *
+   * @since 0.0.17
+   */
+  public destroy(): void {
+    if (this.status() !== XhTransitionWorkStatus.free) {
+      this.stop();
+    }
+
+    this.clearEvents();
   }
 
   /**
