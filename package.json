@@ -4,15 +4,15 @@
   "version": "0.0.0",
   "packageManager": "pnpm@8.11.0",
   "description": "_description_",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "xiaohe0601 <HeDianGeng0601@outlook.com>",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/pkg-placeholder#readme",
+  "funding": "https://github.com/sponsors/xiaohe0601",
+  "homepage": "https://github.com/xiaohe0601/pkg-placeholder#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/pkg-placeholder.git"
+    "url": "git+https://github.com/xiaohe0601/pkg-placeholder.git"
   },
-  "bugs": "https://github.com/antfu/pkg-placeholder/issues",
+  "bugs": "https://github.com/xiaohe0601/pkg-placeholder/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {

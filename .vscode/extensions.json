@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "editorConfig.editorConfig",
+    "antfu.vite"
+  ]
+}

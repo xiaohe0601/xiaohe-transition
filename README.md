@@ -8,20 +8,14 @@
 
 _description_
 
+> Forked from [antfu/starter-ts](https://github.com/antfu/starter-ts)
+
 > **Note**:
-> Replace `pkg-placeholder`, `_description_` and `antfu` globally to use this template.
-
-## Sponsors
-
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg'/>
-  </a>
-</p>
+> Replace `pkg-placeholder`, `_description_` and `xiaohe0601` globally to use this template.
 
 ## License
 
-[MIT](./LICENSE) License © 2023-PRESENT [Anthony Fu](https://github.com/antfu)
+[MIT](./LICENSE) License © 2023-PRESENT [小何同学](https://github.com/xiaohe0601)
 
 
 <!-- Badges -->
@@ -32,7 +26,7 @@ _description_
 [npm-downloads-href]: https://npmjs.com/package/pkg-placeholder
 [bundle-src]: https://img.shields.io/bundlephobia/minzip/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669&label=minzip
 [bundle-href]: https://bundlephobia.com/result?p=pkg-placeholder
-[license-src]: https://img.shields.io/github/license/antfu/pkg-placeholder.svg?style=flat&colorA=080f12&colorB=1fa669
-[license-href]: https://github.com/antfu/pkg-placeholder/blob/main/LICENSE
+[license-src]: https://img.shields.io/github/license/xiaohe0601/pkg-placeholder.svg?style=flat&colorA=080f12&colorB=1fa669
+[license-href]: https://github.com/xiaohe0601/pkg-placeholder/blob/main/LICENSE
 [jsdocs-src]: https://img.shields.io/badge/jsdocs-reference-080f12?style=flat&colorA=080f12&colorB=1fa669
 [jsdocs-href]: https://www.jsdocs.io/package/pkg-placeholder
