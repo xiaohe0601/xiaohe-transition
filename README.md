@@ -25,24 +25,22 @@
 
 ### 🚁 安装
 
-#### NPM
+#### PNPM
 
 ``` shell
 pnpm add xiaohe-transition
 ```
 
+#### YARN
+
 ``` shell
 yarn add xiaohe-transition
 ```
 
+#### NPM
+
 ``` shell
 npm install xiaohe-transition
-```
-
-#### CDN
-
-``` html
-<script src="https://cdn.jsdelivr.net/npm/xiaohe-transition/dist/index.cjs"></script>
 ```
 
 ### 🛹 使用
@@ -226,9 +224,7 @@ transition.clearEvents();
 ### 🐶 讨论交流
 
 - ❓：若有疑问或BUG反馈，可提交[issues](https://github.com/xiaohe0601/xiaohe-transition/issues)
-
 - 📫：[HeDianGeng0601@outlook.com](mailto:HeDianGeng0601@outlook.com)
-
 - 🐧：暂未开通
 
 ### 🏆 开源协议
