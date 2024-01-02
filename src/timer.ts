@@ -1,4 +1,4 @@
-import type { TimerCallback } from "./types";
+import type { NullableNumber, TimerCallback } from "./types";
 import { TRANSITION_FALLBACK_FPS } from "./config";
 import { fps2ms } from "./helpers";
 

@@ -1,6 +1,6 @@
 import BezierEasing from "bezier-easing";
 import Emitter from "./emitter";
-import type { TransitionEvents, TransitionOptions, TransitionValueCallback } from "./types";
+import type { NullableObject, TransitionEvents, TransitionOptions, TransitionValueCallback } from "./types";
 import { TransitionWorkStatus } from "./types";
 import Timer from "./timer";
 import { BEZIER_CURVE_PRESET_CONFIG, DEFAULT_TRANSITION_DELAY, DEFAULT_TRANSITION_DURATION, DEFAULT_TRANSITION_FPS, DEFAULT_TRANSITION_PRESET } from "./config";
