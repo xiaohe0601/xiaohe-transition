@@ -1,18 +1,18 @@
 {
-  "name": "pkg-placeholder",
+  "name": "xiaohe-transition",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "packageManager": "pnpm@8.12.1",
-  "description": "_description_",
+  "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
   "author": "xiaohe0601 <HeDianGeng0601@outlook.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/xiaohe0601",
-  "homepage": "https://github.com/xiaohe0601/pkg-placeholder#readme",
+  "homepage": "https://github.com/xiaohe0601/xiaohe-transition#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiaohe0601/pkg-placeholder.git"
+    "url": "git+https://github.com/xiaohe0601/xiaohe-transition.git"
   },
-  "bugs": "https://github.com/xiaohe0601/pkg-placeholder/issues",
+  "bugs": "https://github.com/xiaohe0601/xiaohe-transition/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {
@@ -46,6 +46,9 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "bezier-easing": "^2.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.0",
