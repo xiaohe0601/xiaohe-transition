@@ -1,7 +1,7 @@
 {
   "name": "xiaohe-transition",
   "type": "module",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "packageManager": "pnpm@8.12.1",
   "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
   "author": "xiaohe0601 <HeDianGeng0601@outlook.com>",
@@ -13,7 +13,12 @@
     "url": "git+https://github.com/xiaohe0601/xiaohe-transition.git"
   },
   "bugs": "https://github.com/xiaohe0601/xiaohe-transition/issues",
-  "keywords": ["xiaohe", "bezier", "transition", "animation"],
+  "keywords": [
+    "xiaohe",
+    "bezier",
+    "transition",
+    "animation"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
