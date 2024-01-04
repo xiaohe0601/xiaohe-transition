@@ -29,8 +29,8 @@ jobs:
       - name: Install
         run: nci
 
-      - name: Lint
-        run: nr lint
+      - name: ESLint
+        run: nr eslint
 
   typecheck:
     runs-on: ubuntu-latest
