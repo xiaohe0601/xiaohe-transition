@@ -50,8 +50,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "lint:type": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
@@ -82,6 +82,6 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*.{js,ts}": "eslint --fix"
   }
 }
