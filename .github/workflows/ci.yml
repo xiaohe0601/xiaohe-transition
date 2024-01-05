@@ -29,30 +29,11 @@ jobs:
       - name: Install
         run: nci
 
-      - name: ESLint
-        run: nr eslint
+      - name: Lint code
+        run: nr lint
 
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Set node
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-
-      - name: Setup
-        run: npm i -g @antfu/ni
-
-      - name: Install
-        run: nci
-
-      - name: Typecheck
-        run: nr typecheck
+      - name: Lint type
+        run: nr lint:type
 
   test:
     runs-on: ${{ matrix.os }}

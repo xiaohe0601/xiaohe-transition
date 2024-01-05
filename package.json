@@ -42,15 +42,17 @@
     "lib"
   ],
   "scripts": {
-    "dev": "unbuild --stub",
-    "build": "unbuild",
-    "babel": "npx babel dist --config-file ./src/.babelrc.json --out-dir lib --copy-files --keep-file-extension",
-    "prepublishOnly": "nr build && nr babel",
-    "release": "bumpp && npm publish",
     "start": "esno src/index.ts",
+    "build": "nr build:step-1 && nr build:step-2",
+    "build:step-1": "unbuild",
+    "build:step-2": "npx babel dist --config-file ./src/.babelrc.json --out-dir lib --copy-files --keep-file-extension",
+    "release": "nr build && bumpp && npm publish",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
-    "eslint": "eslint .",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:type": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
