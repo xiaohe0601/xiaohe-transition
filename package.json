@@ -1,7 +1,7 @@
 {
   "name": "xiaohe-transition",
   "type": "module",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "packageManager": "pnpm@8.14.0",
   "description": "🏀 一个简单易用的贝塞尔曲线过渡动画工具",
   "author": "xiaohe0601 <HeDianGeng0601@outlook.com>",
