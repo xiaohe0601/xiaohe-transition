@@ -224,6 +224,8 @@ export default class Repeater extends Emitter<RepeaterEvents> {
     }
 
     this.clearEvents();
+
+    this._transition.destroy();
   }
 
   /**
