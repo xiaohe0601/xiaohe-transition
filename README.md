@@ -219,6 +219,7 @@ transition.clearEvents();
 
 ### 🛸 链接
 
+- [xiaohe-nano-emitter](https://github.com/xiaohe0601/xiaohe-nano-emitter) 🛴 一个轻量级的事件发射器
 - [bezier-easing](https://github.com/gre/bezier-easing) cubic-bezier implementation for your JavaScript animation easings.
 
 ### 🐶 讨论交流
