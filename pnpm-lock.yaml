@@ -11,6 +11,9 @@ importers:
       bezier-easing:
         specifier: ^2.1.0
         version: 2.1.0
+      xiaohe-nano-emitter:
+        specifier: ^0.0.3
+        version: 0.0.3
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.6.2
@@ -5799,6 +5802,10 @@ packages:
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
+
+  /xiaohe-nano-emitter@0.0.3:
+    resolution: {integrity: sha512-mKfQ4prjWdesegN6Y9WHoPcTRVrzj4/KHQE/nitoreq+gmPbXIbA/iKezCka+JHFcc4zAmQFEn2wazcO6U9Emw==}
+    dev: false
 
   /xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}

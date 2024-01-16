@@ -56,7 +56,8 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "bezier-easing": "^2.1.0"
+    "bezier-easing": "^2.1.0",
+    "xiaohe-nano-emitter": "^0.0.3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.2",

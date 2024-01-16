@@ -1,5 +1,5 @@
 import BezierEasing from "bezier-easing";
-import Emitter from "./emitter";
+import { Emitter } from "xiaohe-nano-emitter";
 import type { NullableObject, TransitionEvents, TransitionOptions, TransitionValueCallback } from "./types";
 import { TransitionWorkStatus } from "./types";
 import Timer from "./timer";

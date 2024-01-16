@@ -1,7 +1,7 @@
+import { Emitter } from "xiaohe-nano-emitter";
 import type Transition from "./transition";
 import type { RepeatOptions, RepeaterEvents } from "./types";
 import { RepeatMode, TransitionWorkStatus } from "./types";
-import Emitter from "./emitter";
 import { DEFAULT_REPEAT_COUNT, DEFAULT_REPEAT_MODE } from "./config";
 
 export default class Repeater extends Emitter<RepeaterEvents> {
